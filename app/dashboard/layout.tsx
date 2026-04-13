@@ -37,14 +37,14 @@ export default function DashboardLayout({
     <div className="flex h-screen w-full flex-col font-sans bg-[#FDFDFD] overflow-hidden md:flex-row">
       {/* Dynamic Sidebar Application Wrapper (Desktop + Mobile) */}
       <aside className="flex w-full flex-col border-b border-gray-200 bg-white shadow-[2px_0_8px_rgba(0,0,0,0.02)] md:w-64 md:border-b-0 md:border-r">
-        {/* PostPilot AI Dashboard Branding Header */}
+        {/* PostPilot  Dashboard Branding Header */}
         <div className="flex h-16 shrink-0 items-center border-b border-gray-100 px-6">
           <Link href="/" className="group flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-lg font-bold text-white shadow-md transition-transform group-hover:scale-105">
               P
             </div>
             <span className="text-lg font-bold tracking-tight text-gray-900">
-              PostPilot AI
+              PostPilot 
             </span>
           </Link>
         </div>

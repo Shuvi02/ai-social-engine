@@ -11,7 +11,7 @@ export default function DashboardIndex() {
         
         {/* Headings */}
         <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-          Welcome to your Dashboard
+          What would you like to create today?
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500">
           Ready to take your social media presence to the next level? Generate stunning, platform-ready campaigns effortlessly or review your past activity!

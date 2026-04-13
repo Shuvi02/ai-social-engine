@@ -16,6 +16,7 @@ export default function HistoryPage() {
   const router = useRouter();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   // Properly initialize the browser client mapped inside component hooks isolating SSR loops cleanly 
   const supabase = createClient();
@@ -66,6 +67,23 @@ export default function HistoryPage() {
         Generated Artifact
       </span>
     );
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this campaign?')) return;
+    
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/campaigns/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed.');
+      
+      setCampaigns(prev => prev.filter(c => c.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert('Failed to delete the campaign. Please try again.');
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   if (loading) {
@@ -140,12 +158,22 @@ export default function HistoryPage() {
                             {getStatusBadge(campaign.status)}
                           </td>
                           <td className="relative whitespace-nowrap py-6 pl-3 pr-6 text-right text-sm font-medium sm:pr-8">
-                            <button
-                              onClick={() => router.push(`/dashboard/preview?id=${campaign.id}`)}
-                              className="inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 font-bold text-indigo-600 shadow-sm border border-indigo-100 hover:bg-indigo-50 hover:text-indigo-900 transition-colors"
-                            >
-                              View Project <span>&rarr;</span>
-                            </button>
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                onClick={() => router.push(`/dashboard/preview?id=${campaign.id}`)}
+                                className="inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 font-bold text-indigo-600 shadow-sm border border-indigo-100 hover:bg-indigo-50 hover:text-indigo-900 transition-colors"
+                              >
+                                View Project <span>&rarr;</span>
+                              </button>
+                              <button
+                                onClick={() => handleDelete(campaign.id)}
+                                disabled={deletingId === campaign.id}
+                                className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-2 font-bold text-red-600 shadow-sm border border-red-100 hover:bg-red-50 hover:text-red-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                title="Delete Campaign"
+                              >
+                                {deletingId === campaign.id ? 'Wait...' : 'Delete'}
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))

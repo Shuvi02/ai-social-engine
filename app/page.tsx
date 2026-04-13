@@ -18,7 +18,7 @@ export default function LandingPage() {
                 P
               </div>
               <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-xl font-bold tracking-tight text-transparent">
-                PostPilot AI
+                PostPilot 
               </span>
             </Link>
             <div className="flex items-center gap-6">
@@ -46,14 +46,14 @@ export default function LandingPage() {
               Introducing the Ultimate AI Engine
             </div>
             <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-white md:text-7xl">
-              Turn your ideas into{" "}
+              From Idea to{" "}
               <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                viral social media
+                Published Post
               </span>{" "}
-              campaigns instantly
+              in 60 Seconds
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-gray-400 md:text-xl">
-              Why spend hours planning content manually? Let our AI generate platform-ready, perfectly tuned posts for LinkedIn, Instagram, and Twitter in seconds.
+              Stop wasting hours writing social media content. PostPilot  understands your goal, crafts platform-perfect posts for LinkedIn, Instagram, Twitter and Telegram, and publishes them with one click.
             </p>
             <div className="flex justify-center pt-8">
               <Link
@@ -91,10 +91,10 @@ export default function LandingPage() {
                 🎯
               </div>
               <h3 className="mb-3 text-2xl font-bold text-white">
-                1. Describe your goal
+                Tell us your goal
               </h3>
               <p className="leading-relaxed text-gray-400">
-                Whether you're hiring, generating leads, or making a major announcement, just tell us what you're trying to achieve in your own words.
+                Hiring someone? Launching a product? Just describe what you need — our AI handles the rest.
               </p>
             </div>
             
@@ -104,10 +104,10 @@ export default function LandingPage() {
                 ⚡
               </div>
               <h3 className="mb-3 text-2xl font-bold text-white">
-                2. AI generates your posts
+                AI writes it perfectly
               </h3>
               <p className="leading-relaxed text-gray-400">
-                Our tailored LLMs instantly craft specialized versions of your idea formatted strictly for LinkedIn, Twitter, and Instagram with hashtags.
+                Get professionally crafted posts tailored for each platform — tone, hashtags, emojis and all.
               </p>
             </div>
             
@@ -117,10 +117,10 @@ export default function LandingPage() {
                 🚀
               </div>
               <h3 className="mb-3 text-2xl font-bold text-white">
-                3. Approve and publish
+                One click to publish
               </h3>
               <p className="leading-relaxed text-gray-400">
-                Review the AI's generated content side-by-side, make adjustments if needed, explicitly select your target platforms, and effortlessly publish.
+                Review your content, select your platforms, and go live instantly. No copy-pasting ever again.
               </p>
             </div>
           </div>

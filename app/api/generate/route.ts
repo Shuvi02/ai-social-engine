@@ -17,22 +17,24 @@ export async function POST(request: Request) {
 
     // 1. Generate the social media posts using Groq
     const userPrompt = `
-Generate a social media campaign based on the following input.
+Generate a highly creative, engaging social media campaign based on the following input. Even if the input data is vague, be creative and fill in the gaps intelligently to create compelling content.
 
 Goal: ${goal}
 Details: ${JSON.stringify(formData, null, 2)}
 
-Please generate exactly three versions of a post based on the goal and details above:
-1. LinkedIn: professional tone.
-2. Instagram: casual tone with emojis.
-3. Twitter: short punchy tone.
+Please generate exactly four versions of a post based on the goal and details above. Make each platform feel completely different and native to that platform:
+1. LinkedIn: Professional tone, use bullet points, statistics, thought leadership angle, include relevant emojis sparingly.
+2. Instagram: Very casual, fun, heavy emojis, storytelling style, strong CTA, line breaks for readability.
+3. Twitter: Punchy one-liner, maximum impact in minimum words, trending hashtags style.
+4. Telegram: Conversational, friendly, moderate emojis.
 
 Each version must include relevant hashtags.
 Return the response ONLY as a JSON object with this exact structure:
 {
   "linkedin": { "content": "The post content...", "hashtags": ["#tag1", "#tag2"] },
   "instagram": { "content": "The post content...", "hashtags": ["#tag1", "#tag2"] },
-  "twitter": { "content": "The post content...", "hashtags": ["#tag1", "#tag2"] }
+  "twitter": { "content": "The post content...", "hashtags": ["#tag1", "#tag2"] },
+  "telegram": { "content": "The post content...", "hashtags": ["#tag1", "#tag2"] }
 }`;
 
     const completion = await groq.chat.completions.create({
@@ -116,6 +118,12 @@ Return the response ONLY as a JSON object with this exact structure:
         platform: 'twitter',
         content: generatedData.twitter?.content,
         hashtags: generatedData.twitter?.hashtags || [],
+      },
+      {
+        campaign_id: campaign.id,
+        platform: 'telegram',
+        content: generatedData.telegram?.content,
+        hashtags: generatedData.telegram?.hashtags || [],
       }
     ];
 

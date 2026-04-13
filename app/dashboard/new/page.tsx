@@ -9,25 +9,25 @@ const GOALS: { id: GoalType; title: string; description: string; icon: string }[
   {
     id: "Hiring",
     title: "Hiring",
-    description: "Attract top talent and grow your dream team",
+    description: "Find the right people faster",
     icon: "🤝",
   },
   {
     id: "Lead Generation",
     title: "Lead Generation",
-    description: "Drive sales and acquire high-quality prospects",
+    description: "Turn attention into customers",
     icon: "📈",
   },
   {
     id: "Branding",
     title: "Branding",
-    description: "Build awareness and establish thought leadership",
+    description: "Make your brand impossible to ignore",
     icon: "✨",
   },
   {
     id: "Announcement",
     title: "Announcement",
-    description: "Share news, milestones, or product launches",
+    description: "Get your news out to the world",
     icon: "📢",
   },
 ];
@@ -68,12 +68,8 @@ export default function NewCampaignPage() {
 
       const generatedData = await response.json();
 
-      // Store the preview JSON output payload into localStorage 
-      // dynamically mapping the handshake across pages without complex state managers.
-      localStorage.setItem("generatedCampaignPreview", JSON.stringify(generatedData));
-
-      // Route the user to the preview UI
-      router.push("/dashboard/preview");
+      // Route the user to the preview UI natively using the backend mapped campaign ID
+      router.push(`/dashboard/preview?id=${generatedData.campaignId}`);
       
     } catch (error: any) {
       console.error(error);
@@ -94,7 +90,7 @@ export default function NewCampaignPage() {
                   type="text"
                   name="jobTitle"
                   required
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                   placeholder="e.g., Senior Frontend Developer"
                 />
               </div>
@@ -104,7 +100,7 @@ export default function NewCampaignPage() {
                   type="text"
                   name="location"
                   required
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                   placeholder="e.g., San Francisco, CA"
                 />
               </div>
@@ -113,13 +109,13 @@ export default function NewCampaignPage() {
                 <input
                   type="text"
                   name="salaryRange"
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                   placeholder="e.g., $120k - $150k"
                 />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-gray-700">Work Model</label>
-                <select name="workModel" className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10">
+                <select name="workModel" className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10">
                   <option value="Remote">Remote</option>
                   <option value="Hybrid">Hybrid</option>
                   <option value="On-site">On-site</option>
@@ -132,7 +128,7 @@ export default function NewCampaignPage() {
                 name="requiredSkills"
                 rows={3}
                 required
-                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="List the key skills and qualifications..."
               ></textarea>
             </div>
@@ -148,7 +144,7 @@ export default function NewCampaignPage() {
                   type="text"
                   name="serviceOffered"
                   required
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                   placeholder="What are you selling?"
                 />
               </div>
@@ -158,7 +154,7 @@ export default function NewCampaignPage() {
                   type="text"
                   name="targetIndustry"
                   required
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                   placeholder="Who is this for?"
                 />
               </div>
@@ -169,7 +165,7 @@ export default function NewCampaignPage() {
                 name="keyUSP"
                 rows={3}
                 required
-                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="Why should they choose you over competitors?"
               ></textarea>
             </div>
@@ -179,7 +175,7 @@ export default function NewCampaignPage() {
                 type="text"
                 name="callToAction"
                 required
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="e.g., Book a Free Consultation"
               />
             </div>
@@ -194,7 +190,7 @@ export default function NewCampaignPage() {
                 type="text"
                 name="brandTone"
                 required
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="e.g., Professional, Authoritative, Witty, or Empathetic"
               />
             </div>
@@ -203,7 +199,7 @@ export default function NewCampaignPage() {
               <input
                 type="text"
                 name="tagline"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="e.g., Innovating the future of AI"
               />
             </div>
@@ -213,7 +209,7 @@ export default function NewCampaignPage() {
                 name="eventContext"
                 rows={4}
                 required
-                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="What is the context of this post? Describe your brand's recent milestone, perspective, or thoughts..."
               ></textarea>
             </div>
@@ -228,7 +224,7 @@ export default function NewCampaignPage() {
                 type="text"
                 name="announcementDetails"
                 required
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="e.g., Series B Funding, New Feature Launch, Partnership"
               />
             </div>
@@ -238,7 +234,7 @@ export default function NewCampaignPage() {
                 type="text"
                 name="targetAudience"
                 required
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="Who needs to hear this? e.g., Investors, Existing users"
               />
             </div>
@@ -248,7 +244,7 @@ export default function NewCampaignPage() {
                 name="keyDetails"
                 rows={4}
                 required
-                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
+                className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 p-3 text-sm text-gray-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 placeholder:text-gray-400"
                 placeholder="The important facts, dates, numbers, or links associated with this news..."
               ></textarea>
             </div>
