@@ -1,65 +1,131 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-indigo-500/30">
+      {/* Dynamic Background Gradients */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-600/20 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-0 right-[-10%] w-[600px] h-[600px] bg-purple-600/10 blur-[150px] rounded-full"></div>
+      </div>
+
+      <div className="relative z-10">
+        {/* Navigation Bar */}
+        <nav className="border-b border-white/10 bg-slate-950/50 backdrop-blur-md">
+          <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+            <Link href="/" className="group flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-lg font-bold text-white shadow-lg transition-transform group-hover:scale-105">
+                P
+              </div>
+              <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-xl font-bold tracking-tight text-transparent">
+                PostPilot AI
+              </span>
+            </Link>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/login"
+                className="text-sm font-semibold text-gray-300 transition-colors hover:text-white"
+              >
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="rounded-full bg-white px-6 py-2.5 text-sm font-bold text-slate-900 shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all hover:bg-gray-100"
+              >
+                Get Started
+              </Link>
+            </div>
+          </div>
+        </nav>
+
+        {/* Cinematic Hero Section */}
+        <main className="mx-auto max-w-7xl px-6 pb-24 pt-32 text-center">
+          <div className="mx-auto max-w-4xl space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+            <div className="inline-flex items-center rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm font-medium text-indigo-300">
+              <span className="mr-2 flex h-2 w-2 animate-pulse rounded-full bg-indigo-500"></span>
+              Introducing the Ultimate AI Engine
+            </div>
+            <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-white md:text-7xl">
+              Turn your ideas into{" "}
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                viral social media
+              </span>{" "}
+              campaigns instantly
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-gray-400 md:text-xl">
+              Why spend hours planning content manually? Let our AI generate platform-ready, perfectly tuned posts for LinkedIn, Instagram, and Twitter in seconds.
+            </p>
+            <div className="flex justify-center pt-8">
+              <Link
+                href="/signup"
+                className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 px-10 font-medium text-white shadow-[0_0_40px_rgba(99,102,241,0.4)] transition hover:scale-105 hover:shadow-[0_0_60px_rgba(99,102,241,0.6)]"
+              >
+                <span className="absolute h-0 w-0 rounded-full bg-white opacity-10 transition-all duration-300 ease-out group-hover:h-32 group-hover:w-full"></span>
+                <span className="relative flex items-center gap-2 text-lg font-bold">
+                  Start for Free
+                  <svg
+                    className="h-5 w-5 transition-transform group-hover:translate-x-1.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                </span>
+              </Link>
+            </div>
+          </div>
+        </main>
+
+        {/* Core Features Grid */}
+        <div className="border-t border-white/5 mx-auto max-w-7xl px-6 py-24">
+          <div className="grid gap-8 md:grid-cols-3">
+            {/* Feature Card 1 */}
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/10 hover:shadow-2xl">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-500/20 text-3xl text-indigo-400">
+                🎯
+              </div>
+              <h3 className="mb-3 text-2xl font-bold text-white">
+                1. Describe your goal
+              </h3>
+              <p className="leading-relaxed text-gray-400">
+                Whether you're hiring, generating leads, or making a major announcement, just tell us what you're trying to achieve in your own words.
+              </p>
+            </div>
+            
+            {/* Feature Card 2 */}
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/10 hover:shadow-2xl">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-500/20 text-3xl text-purple-400">
+                ⚡
+              </div>
+              <h3 className="mb-3 text-2xl font-bold text-white">
+                2. AI generates your posts
+              </h3>
+              <p className="leading-relaxed text-gray-400">
+                Our tailored LLMs instantly craft specialized versions of your idea formatted strictly for LinkedIn, Twitter, and Instagram with hashtags.
+              </p>
+            </div>
+            
+            {/* Feature Card 3 */}
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/10 hover:shadow-2xl">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-pink-500/20 text-3xl text-pink-400">
+                🚀
+              </div>
+              <h3 className="mb-3 text-2xl font-bold text-white">
+                3. Approve and publish
+              </h3>
+              <p className="leading-relaxed text-gray-400">
+                Review the AI's generated content side-by-side, make adjustments if needed, explicitly select your target platforms, and effortlessly publish.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
