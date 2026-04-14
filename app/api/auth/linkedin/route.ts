@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const clientId = process.env.LINKEDIN_CLIENT_ID;
-  const redirectUri = "http://localhost:3000/api/auth/linkedin/callback";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const redirectUri = `${baseUrl}/api/auth/linkedin/callback`;
   const scope = "openid profile email w_member_social";
 
   if (!clientId) {

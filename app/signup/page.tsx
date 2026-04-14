@@ -16,9 +16,13 @@ export default function SignupPage() {
     setLoading(true);
     setError(null);
 
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
     const { error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${baseUrl}/dashboard`,
+      }
     });
 
     if (error) {

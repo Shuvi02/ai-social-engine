@@ -18,7 +18,7 @@ export async function GET(request: Request) {
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         code,
-        redirect_uri: 'http://localhost:3000/api/auth/linkedin/callback',
+        redirect_uri: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/auth/linkedin/callback`,
         client_id: process.env.LINKEDIN_CLIENT_ID || '',
         client_secret: process.env.LINKEDIN_CLIENT_SECRET || '',
       }),
