@@ -73,7 +73,15 @@ export async function GET(request: Request) {
     if (dbError) throw new Error(`Failed to save LinkedIn credentials: ${dbError.message}`);
 
     // 5. Redirect to preview dashboard on success
-    return NextResponse.redirect(new URL('/dashboard/preview', request.url));
+    const state = url.searchParams.get('state');
+    let redirectUrl = '/dashboard/preview';
+    
+    if (state && state.startsWith('campaignId:')) {
+      const campaignId = state.split(':')[1];
+      redirectUrl = `/dashboard/preview?id=${campaignId}`;
+    }
+
+    return NextResponse.redirect(new URL(redirectUrl, request.url));
 
   } catch (error: any) {
     console.error('LinkedIn OAuth callback error:', error);

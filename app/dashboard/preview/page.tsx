@@ -425,7 +425,7 @@ function PreviewPageContent() {
           <div className="flex flex-col items-center gap-6 border-t border-gray-200 pt-10 max-w-3xl mx-auto">
             {activeTab === 'linkedin' && selectedPlatforms.linkedin && isLinkedInConnected === false && (
               <a
-                href="/api/auth/linkedin"
+                href={`/api/auth/linkedin?campaignId=${urlCampaignId}`}
                 className="inline-flex w-full items-center justify-center gap-3 rounded-2xl border-2 border-blue-600 bg-blue-50 px-8 py-5 text-lg font-bold text-blue-700 shadow-sm transition hover:bg-blue-100 hover:-translate-y-1"
               >
                 <span className="text-2xl">🔗</span> Connect LinkedIn Account

@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const campaignId = searchParams.get('campaignId');
+  
   const clientId = process.env.LINKEDIN_CLIENT_ID;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const redirectUri = `${baseUrl}/api/auth/linkedin/callback`;
@@ -13,10 +16,9 @@ export async function GET() {
     );
   }
 
-  // Generate randomized CSRF state validating handshake securely out-of-band
-  const state = Math.random().toString(36).substring(7);
+  // Use state to pass campaignId back through the OAuth flow
+  const state = campaignId ? `campaignId:${campaignId}` : Math.random().toString(36).substring(7);
 
-  // Safely assemble OAuth payload URLs mapping exact user specifications
   const linkedinAuthUrl = new URL('https://www.linkedin.com/oauth/v2/authorization');
   linkedinAuthUrl.searchParams.append('response_type', 'code');
   linkedinAuthUrl.searchParams.append('client_id', clientId);
@@ -25,6 +27,5 @@ export async function GET() {
   linkedinAuthUrl.searchParams.append('scope', scope);
   linkedinAuthUrl.searchParams.append('prompt', 'login');
 
-  // Directly forward user context across native 302 boundary to start handshake
   return NextResponse.redirect(linkedinAuthUrl.toString());
 }
