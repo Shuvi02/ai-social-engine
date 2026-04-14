@@ -62,7 +62,7 @@ export default function LandingPage() {
               >
                 <span className="absolute h-0 w-0 rounded-full bg-white opacity-10 transition-all duration-300 ease-out group-hover:h-32 group-hover:w-full"></span>
                 <span className="relative flex items-center gap-2 text-lg font-bold">
-                  Start for Free
+                  Start from Here
                   <svg
                     className="h-5 w-5 transition-transform group-hover:translate-x-1.5"
                     fill="none"
